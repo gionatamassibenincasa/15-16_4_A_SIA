@@ -8,5 +8,5 @@
     );
     
     echo "La carta in pos. 3 &egrave un ". 
-    $carte[2][0] . " di " . $carte[2][1] ".";
+    $carte[2][0] . " di " . $carte[2][1] . ".";
 ?>
