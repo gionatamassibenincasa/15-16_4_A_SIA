@@ -1,5 +1,7 @@
 <?php
 
+require_once('verifica_ord_r.php');
+
 function insertionSort(&$a) {
     for($posElementoDaInserire = 1;
         $posElementoDaInserire < count($a);
@@ -22,7 +24,10 @@ function insertionSort(&$a) {
 }
 
 $vettore = array(3,7,5,1,4);
-echo "Vettore non ordinato<br>\n";
+stampaOrdinato($vettore);
 print_r($vettore);
 insertionSort($vettore);
+
+stampaOrdinato($vettore);
+
 ?>
