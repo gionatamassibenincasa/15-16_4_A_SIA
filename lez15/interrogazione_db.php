@@ -17,6 +17,8 @@ while( $row = mysqli_fetch_assoc($table) ) {
     echo ($row['first_name']) . "\n";
 }
 
+mysqli_free_result($table);
+
 mysqli_close($connection);
 
 ?>
