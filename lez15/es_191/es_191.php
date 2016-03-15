@@ -18,6 +18,8 @@ while( $row = mysqli_fetch_assoc($table) ) {
     echo ($row['Scadenza']) . "\n";
 }
 
+mysqli_free_result($table);
+
 mysqli_close($connection);
 
 ?>
