@@ -11,8 +11,9 @@
 <?php
 
 function rollback($conn) {
+        echo mysqli_error($conn);
         mysqli_query($conn, "ROLLBACK");
-        die(mysqli_error());
+        die(mysqli_error($conn));
 }
 $host = "localhost";
 $user = "gionatamassibeni";
@@ -47,7 +48,7 @@ $query = "INSERT INTO movimento (" .
          "VALUES (" .
          $n . ", " . 
          $_GET['cc'] . ", " . 
-         $_GET['tipo'] . ", " . 
+         "'". $_GET['tipo'] . "', " . 
          $_GET['importo'] . ")";
 mysqli_query($conn, $query)
     or rollback($conn);
@@ -55,8 +56,10 @@ mysqli_query($conn, $query)
 // Aggiorna il saldo
 $query = "UPDATE conto_corrente " . 
          "SET saldo = saldo " . 
-         ($_GET['tipo'] == 'prelievo')?'- ':'+ ' . 
-         $_GET['importo'];
+         (($_GET['tipo'] == 'prelievo')?'- ':'+ ') . 
+         $_GET['importo'] . " " .
+         "WHERE numero = " . 
+         $_GET['cc'];
 mysqli_query($conn, $query)
     or rollback($conn);
 
@@ -69,8 +72,8 @@ mysqli_query($conn, $query)
 $query = "SELECT saldo FROM " .
          "conto_corrente WHERE " . 
          "numero = " . $_GET['cc'];
-$table = mysqli_query(£conn, $query)
-        or die(mysqli_error());
+$table = mysqli_query($conn, $query)
+        or die(mysqli_error($conn));
 $row = mysqli_fetch_assoc($table);
 echo $row['saldo'];
 ?>
