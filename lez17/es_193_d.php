@@ -68,6 +68,18 @@ $query = "COMMIT";
 mysqli_query($conn, $query)
     or die(mysqli_error());
 
+
+echo "<p>Situazione conto n.: " . $_GET['cc'] . "</p>\n";
+$query = "SELECT cognome, nome FROM " .
+         "correntista, conto_corrente WHERE " . 
+         "numero = " . $_GET['cc'] . " AND " . 
+         "correntista.id_correntista = conto_corrente.id_correntista";
+$table = mysqli_query($conn, $query)
+        or die(mysqli_error($conn));
+$row = mysqli_fetch_assoc($table);
+         
+echo "<p>Intestatario: " . $row['cognome'] . " " . $row['nome'] . "</p>\n";
+
 // Mostra il nuovo saldo
 $query = "SELECT saldo FROM " .
          "conto_corrente WHERE " . 
@@ -75,7 +87,24 @@ $query = "SELECT saldo FROM " .
 $table = mysqli_query($conn, $query)
         or die(mysqli_error($conn));
 $row = mysqli_fetch_assoc($table);
-echo $row['saldo'];
+echo "<p>Saldo contabile: " . $row['saldo'] . "</p>\n";
+echo "<h2>Lista dei movimenti</h2>\n";
+$query = "SELECT data, importo, tipo FROM " .
+         "movimento WHERE " . 
+         "cc = " . $_GET['cc'];
+$table = mysqli_query($conn, $query)
+        or die(mysqli_error($conn));
+echo "<table>\n";
+echo "\t<tr>\n\t\t<th>Data</th><th>Addebito</th><th>Accredito</th>\n\t</tr>\n";
+while ($row=mysqli_fetch_assoc($table)) {
+    echo "\t<tr>\n\t\t<td>" . $row['data'] . "</td>";
+    if ($row['tipo'] == 'prelievo')
+        echo "<td>" . $row['importo'] . "</td><td></td>\n\t</tr>";
+    else
+        echo "<td></td><td>" . $row['importo'] . "</td>\n\t</tr>";
+}
+echo "</table>\n";
+
 ?>
 
 
