@@ -9,12 +9,14 @@ CREATE TABLE correntista (
     cognome VARCHAR(20),
     nome VARCHAR(20)
 );
+
 CREATE TABLE conto_corrente (
     numero INT PRIMARY KEY,
     id_correntista INT REFERENCES 
         correntista(id_correntista),
     saldo REAL NOT NULL DEFAULT 0
 );
+
 CREATE TABLE movimento (
     numero INT PRIMARY KEY,
     cc INT REFERENCES 
