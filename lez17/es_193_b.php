@@ -11,6 +11,10 @@
         <form action="es_193_c.php" method="get">
             
 <?php
+
+isset($_GET['id_correntista']) or
+    die('Deve essere indicato il correntista');
+
 $host = "localhost";
 $user = "gionatamassibeni";
 $pass = "";
@@ -30,10 +34,11 @@ while ($row = mysqli_fetch_assoc($table)) {
     echo '<input type="radio" '.
          'name="cc" ' .
          'value="' . $row['numero'] .
-         '">' . $row['numero'];
+         '"> ' . $row['numero'];
     echo '</div>';
 }
-
+mysqli_free_result($table);
+mysqli_close($conn);
 ?>
         <div align="center">
             <input type="submit" value="Invia"/>

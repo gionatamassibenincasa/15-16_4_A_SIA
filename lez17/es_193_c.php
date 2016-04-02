@@ -1,3 +1,6 @@
+<?php
+isset($_GET['cc']) or die('Conto corrente richiesto');
+?>
 <!DOCTYPE html>
 <html>
     <head>

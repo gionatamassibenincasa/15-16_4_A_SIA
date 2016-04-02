@@ -28,11 +28,13 @@ while ($row = mysqli_fetch_assoc($table)) {
     echo '<input type="radio" '.
          'name="id_correntista" ' .
          'value="' . $row['id_correntista'] .
-         '">' . $row['nome'] . ' ' .
+         '"> ' . $row['nome'] . ' ' .
          $row['cognome'];
     echo '</div>';
 }
 
+mysqli_free_result($table);
+mysqli_close($conn);
 ?>
         <div align="center">
             <input type="submit" value="Invia"/>

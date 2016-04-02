@@ -10,15 +10,19 @@
         
 <?php
 
+isset($_GET['cc']) or
+    die('Numero di conto corrente non indicato');
+
 function rollback($conn) {
         echo mysqli_error($conn);
         mysqli_query($conn, "ROLLBACK");
         die(mysqli_error($conn));
 }
-$host = "localhost";
-$user = "gionatamassibeni";
-$pass = "";
-$db   = "es_193";
+
+$host = 'localhost';
+$user = 'gionatamassibeni';
+$pass = '';
+$db   = 'es_193';
 $port = 3306;
 
 $conn = mysqli_connect($host,
@@ -32,7 +36,7 @@ mysqli_query($conn, $query)
     
 // Interroga per conoscere il numero
 // dell'ultimo movimento
-$query = "SELECT max(numero) AS n " .
+$query = "SELECT MAX(numero) AS n " .
          "FROM movimento";
 $table = mysqli_query($conn, $query)
     or die(mysqli_error());
@@ -41,6 +45,7 @@ if (!isset($row))
     $n = 1;
 else 
     $n = $row['n'] + 1;
+mysqli_free_result($table);
 
 // Inserisce i dati del movimento
 $query = "INSERT INTO movimento (" .
@@ -79,6 +84,7 @@ $table = mysqli_query($conn, $query)
 $row = mysqli_fetch_assoc($table);
          
 echo "<p>Intestatario: " . $row['cognome'] . " " . $row['nome'] . "</p>\n";
+mysqli_free_result($table);
 
 // Mostra il nuovo saldo
 $query = "SELECT saldo FROM " .
@@ -88,13 +94,15 @@ $table = mysqli_query($conn, $query)
         or die(mysqli_error($conn));
 $row = mysqli_fetch_assoc($table);
 echo "<p>Saldo contabile: " . $row['saldo'] . "</p>\n";
+mysqli_free_result($table);
+
 echo "<h2>Lista dei movimenti</h2>\n";
 $query = "SELECT data, importo, tipo FROM " .
          "movimento WHERE " . 
          "cc = " . $_GET['cc'];
 $table = mysqli_query($conn, $query)
         or die(mysqli_error($conn));
-echo "<table>\n";
+echo '<table style="border: 1px solid black">' . "\n";
 echo "\t<tr>\n\t\t<th>Data</th><th>Addebito</th><th>Accredito</th>\n\t</tr>\n";
 while ($row=mysqli_fetch_assoc($table)) {
     echo "\t<tr>\n\t\t<td>" . $row['data'] . "</td>";
@@ -104,7 +112,8 @@ while ($row=mysqli_fetch_assoc($table)) {
         echo "<td></td><td>" . $row['importo'] . "</td>\n\t</tr>";
 }
 echo "</table>\n";
-
+mysqli_free_result($table);
+mysqli_close($conn);
 ?>
 
 
