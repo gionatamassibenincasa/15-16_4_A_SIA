@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>JavaScript immerso in una pagina web</title>
+        <script type="text/javascript" src="fatt.js"></script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th style="text-align: center;"><i>n</i></th style="text-align: center;"><th><i>n!</i></th>
+            </tr>
+            <script>
+                /* global fattoriale */
+                var i = 1;
+                do {
+                    document.writeln("<tr>");
+                    document.writeln('<td style="text-align: right;">' + i + "</td>");
+                    document.writeln('<td style="text-align: right;">' + fattoriale(i) + "</td>");
+                    document.writeln("</tr>");
+                    i++;
+                } while(confirm("Aggiungo una riga?"));
+            </script>
+        </table>
+    </body>
+</html>
