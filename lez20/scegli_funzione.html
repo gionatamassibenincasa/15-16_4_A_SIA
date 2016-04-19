@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Somma dei primi 10 numeri naturali</title>
+	</head>
+	<body>
+		<script>
+var combina = function(a, b, funct) {
+	return funct (a, b);
+};
+
+document.writeln(
+	combina (
+		Number(prompt("Immetti un numero")),
+		Number(prompt("Immetti un altro numero")),
+		//prompt("sum o prod?") === "sum" ? sum : prod
+		prompt("sum o prod?") === "sum" ? 
+			function (a, b) { return a + b; }
+		: 
+			function (a, b) { return a * b; }
+	)
+);
+		</script>
+	</body>
+</html>
