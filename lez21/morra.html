@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Morra</title>
+		<script type="text/javascript" src="morra.js"></script>
+	</head>
+	<body>
+        <form>
+            <input type="button" value="Rock" id="rock"/>
+            <input type="button" value="Paper" id="paper"/>
+            <input type="button" value="Scissors" id="scissors"/>
+        </form>
+        <p id="winner"></p>
+        <script>
+            /* global computerChoice */
+            /* global compare */
+            
+            var buttons = document.getElementsByTagName("input");
+            for (var i = 0; i < buttons.length; i++) {
+                var btn = buttons[i];
+                btn.onclick = function () {
+                    var c1 = btn.id;
+                    var c2 = computerChoice();
+                    var winner = compare(c1, c2);
+                    var p = document.getElementById("winner");
+                    p.innerHTML = winner;
+                };
+            }
+        </script>
+	</body>
+</html>
