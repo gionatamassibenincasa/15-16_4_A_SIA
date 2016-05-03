@@ -9,4 +9,24 @@
     <p>I also wrote a book! Read it
       <a href="http://eloquentjavascript.net">here</a>.</p>
   </body>
+  
+  <script type="text/javascript">
+var search = function(node, level) {
+  var str = "" + level;
+  for (var i = 0; i < level; i++) {
+    str += "\t";
+  }
+  if (node.nodeType === document.ELEMENT_NODE) {
+      str += " " + node.tagName + "\n";
+      var children = node.childNodes;
+      for (var i = 0; i < children.length; i++) {
+          str += search(children[i], level+1);
+      }
+  } else if (node.nodeType === document.TEXT_NODE) {
+      str += node.textContent;
+  }
+  
+  return str;
+};
+  </script>
 </html>
