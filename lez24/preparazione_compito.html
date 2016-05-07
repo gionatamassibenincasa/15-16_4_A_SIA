@@ -12,10 +12,10 @@
             <li id="2">Manipolare il Document Object Model
                 <ol>
                     <li>Ricercare elementi</li>
-                    <li>Creare nuovi elementi</li>
-                    <li>Aggiungere elementi</li>
+                    <li id="creare">Creare nuovi elementi</li>
+                    <li id="aggiungere">Aggiungere elementi</li>
                     <li>Modificare lo stile</li>
-                    <li>Aggiungere eventi</li>
+                    <li id="eventi">Aggiungere eventi</li>
                 </ol>
             </li>
         </ol>
@@ -33,6 +33,26 @@
              var li3 = document.createElement("li");
              li3.innerHTML = 'Uso dei costrutti di iterazione';
              ol.appendChild(li3);
+             
+             /*
+                Modificare il colore di backgroud degli elementi
+                con id "creare", "aggiungere" e "eventi"
+            */
+            
+            document.getElementById("creare")
+                .style.backgroundColor = "red";
+            document.getElementById("aggiungere")
+                .style.backgroundColor = "green";
+            document.getElementById("eventi")
+                .style.backgroundColor = "blue";
+                
+            /*
+                Modificare il colore in primo piano
+            */
+            document.getElementById("aggiungere")
+                .style.color = "yellow";
+            
+            
             
         </script>
     </body>
