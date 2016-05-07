@@ -7,9 +7,9 @@
     <body>
         <h1>Argomenti</h1>
         
-        <ol>
-            <li>Inserire script nelle pagine HTML</li>
-            <li>Manipolare il Document Object Model
+        <ol id="elencoEsterno">
+            <li id="1">Inserire script nelle pagine HTML</li>
+            <li id="2">Manipolare il Document Object Model
                 <ol>
                     <li>Ricercare elementi</li>
                     <li>Creare nuovi elementi</li>
@@ -24,6 +24,16 @@
             li1.onclick = function() {
               alert('tag script');
             };
+            
+            /* 
+               Aggiungere un terzo "list item"
+               in cui si richiede il "Uso dei costrutti di iterazione"
+             */
+             var ol = document.getElementById("elencoEsterno");
+             var li3 = document.createElement("li");
+             li3.innerHTML = 'Uso dei costrutti di iterazione';
+             ol.appendChild(li3);
+            
         </script>
     </body>
 </html>
