@@ -71,6 +71,17 @@
             };
             
             
+            // iteriamo per tutti gli elementi di tipo
+            // 'li' e ne stampiamo il contenuto
+            // sulla console
+            var listaDeiNodiLi = 
+                document.getElementsByTagName('li');
+            for (var i = 0; i < listaDeiNodiLi.length; i++) {
+                var nodo = listaDeiNodiLi[i];
+                var contenuto = nodo.innerHTML;
+                console.log(contenuto);
+            }
+            
         </script>
     </body>
 </html>
