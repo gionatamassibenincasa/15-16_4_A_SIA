@@ -14,7 +14,7 @@
                     <li>Ricercare elementi</li>
                     <li id="creare">Creare nuovi elementi</li>
                     <li id="aggiungere">Aggiungere elementi</li>
-                    <li>Modificare lo stile</li>
+                    <li class="sfondoGiallo">Modificare lo stile</li>
                     <li id="eventi">Aggiungere eventi</li>
                 </ol>
             </li>
@@ -51,7 +51,24 @@
             */
             document.getElementById("aggiungere")
                 .style.color = "yellow";
+                
+                
+            document.
+                getElementsByClassName("sfondoGiallo")[0].
+                    style.
+                        backgroundColor='yellow';
             
+            var li8 = document.getElementsByTagName('li')[7];
+    
+            li8.onmouseover = function () {
+                li8.style.backgroundColor = 'brown';
+                li8.style.color = 'yellow';
+            };
+    
+            li8.onmouseout = function () {
+                li8.style.backgroundColor = 'white';
+                li8.style.color = 'black';
+            };
             
             
         </script>
