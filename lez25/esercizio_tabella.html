@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Esercizio tratto da "Eloquent Javascript". Soluzione ufficiale alla pagina https://github.com/marijnh/Eloquent-JavaScript/blob/master/code/solutions/13_1_build_a_table.html -->
 <html>
     <head>
         <meta charset="utf-8">
@@ -35,7 +36,37 @@ if (typeof module != "undefined" && module.exports)
   module.exports = MOUNTAINS;
 
 function buildTable(data) {
-    // Your code here.
+    var tabella = document.createElement("table");
+    if (data.length != null && data.length > 0) {
+        var listaAttributi = Object.keys(data[0]);
+        var rigaIntestazione = document.createElement("tr");
+        for(var indiceAttr = 0;
+            indiceAttr < listaAttributi.length;
+            indiceAttr++) {
+                var cellaIntestazione = document.createElement("th");
+                cellaIntestazione.innerHTML = listaAttributi[indiceAttr];
+                rigaIntestazione.appendChild(cellaIntestazione);
+        }
+        
+        tabella.appendChild(rigaIntestazione);
+        
+        for (var riga = 0; riga < data.length; riga++) {
+            var rigaDato = document.createElement("tr");
+            for(var indiceAttr = 0;
+                indiceAttr < listaAttributi.length;
+                indiceAttr++) {
+                var dato = document.createElement("td");
+                dato.innerHTML = data[riga][listaAttributi[indiceAttr]];
+                if (typeof data[riga][listaAttributi[indiceAttr]] == "number") {
+                    dato.style.textAlign = "right";
+                }
+                rigaDato.appendChild(dato);
+            }
+            tabella.appendChild(rigaDato);
+        }
+    }
+    
+    return tabella;
 }
 
 document.body.appendChild(buildTable(MOUNTAINS));
