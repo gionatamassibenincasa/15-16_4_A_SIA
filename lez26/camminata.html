@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Animazione</title>
+    </head>
+    <body>
+        <img id="immagine" style="align: center" src="0.png"></img>
+        <script type="text/javascript">
+            document.imgNumber = 0;
+            document.degrees = 0;
+            
+            var updateImage = function() {
+                document.imgNumber = (document.imgNumber + 1) % 5;
+                var imgName = "" + document.imgNumber + ".png";
+                var img = document.getElementById("immagine");
+                img.setAttribute("src", imgName);
+                if (document.imgNumber == 0) {
+                    document.degrees = (document.degrees + 90) % 360;
+                    img.setAttribute("style", "transform: rotate(" + document.degrees + "deg)");
+                }
+            }
+            setInterval(updateImage, 500);
+        </script>
+    </body>
+</html>
