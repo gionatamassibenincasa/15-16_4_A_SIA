@@ -5,7 +5,24 @@
         <title>Animazione</title>
     </head>
     <body>
-        <img id="immagine" style="align: center" src="0.png"></img>
+        <div align="center">
+            <img id="immagine" style="align: center" src="0.png"></img>
+        </div>
+        
+        <div align="center">
+            <table>
+                <caption>Parametri</caption>
+                <tr>
+                    <th>imgNumber</th>
+                    <th>degrees</th>
+                </tr>
+                <tr>
+                    <td id="imgNumber">0</td>
+                    <td id="imgDegrees">0</td>
+                </tr>
+            </table>
+        </div>
+        
         <script type="text/javascript">
             document.imgNumber = 0;
             document.degrees = 0;
@@ -15,9 +32,11 @@
                 var imgName = "" + document.imgNumber + ".png";
                 var img = document.getElementById("immagine");
                 img.setAttribute("src", imgName);
+                document.getElementById("imgNumber").innerHTML = document.imgNumber;
                 if (document.imgNumber == 0) {
                     document.degrees = (document.degrees + 90) % 360;
                     img.setAttribute("style", "transform: rotate(" + document.degrees + "deg)");
+                    document.getElementById("imgDegrees").innerHTML = document.degrees;
                 }
             }
             setInterval(updateImage, 500);
