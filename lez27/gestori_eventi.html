@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Gestione degli eventi</title>
+    </head>
+    <body>
+        <button tabindex="1">Cliccami!</button>
+        <button tabindex="3">Cliccami!</button>
+        <button tabindex="2">Cliccami!</button>
+        <button tabindex="4">Cliccami!</button>
+        <button tabindex="5">Cliccami!</button>
+<script>
+  document.dataPrimaVolta = true;
+  var gestoreClick = function(evento) {
+      if (document.dataPrimaVolta) {
+        alert("Il bottone è stato cliccato per la prima volta.");
+        document.dataPrimaVolta = false;
+      } else {
+        console.log(typeof evento);
+        console.log(evento);
+      }
+  }
+  
+  var gestoreMouseGiu = function(evento) {
+      console.log(evento.type);
+      console.log(evento.target);
+      var pulsante = evento.which;
+      switch(pulsante) {
+          case 1:
+              console.log("Pulsante di sinistra");
+              break;
+          case 2:
+              console.log("Pulsante centrale");
+              evento.preventDefault();
+              break;
+          case 3:
+              console.log("Pulsante di destra");
+              evento.preventDefault();
+      }
+  }
+   
+  var button = document.getElementsByTagName("button")[0];
+  //button.onclick = gestoreClick;
+  button.onclick = function(evento) {
+    console.log("Click!");  
+  };
+  //button.onmousedown = gestoreMouseGiu;
+  //button.onmouseup = gestoreMouseGiu;
+  
+</script>
+    </body>
+</html>
